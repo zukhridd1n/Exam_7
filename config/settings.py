@@ -24,6 +24,7 @@ SECRET_KEY = 'django-insecure-7=4&(8^2qzqya+g&my6dd4-e=ma-4^r*l=^e!t8=l!+uxcu4ew
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+AUTH_USER_MODEL = 'account.Account'
 
 ALLOWED_HOSTS = []
 
@@ -37,6 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'account',
+    'football',
+    'post',
+    'product',
+    'vacancy',
+    'drf_yasg',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -67,7 +77,11 @@ TEMPLATES = [
         },
     },
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
@@ -115,9 +129,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = 'static/'
-
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "static"
+MEDIA_URL = "media/"
+MEDIA_ROOT = BASE_DIR/ "media"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
