@@ -4,11 +4,13 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from post.models import Post
+from post.permissions import IsOwnerPermission
 from post.serializers import PostSerializer
 
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.all().order_by('id')
     serializer_class = PostSerializer
+    permission_classes = IsOwnerPermission,
 
     def update(self, request, pk=None):
         post = get_object_or_404(self.queryset, pk=pk)
